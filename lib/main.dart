@@ -32,21 +32,28 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // _loadcounter is used in initstate to load the value of counter
   @override
   void initState() {
     super.initState();
     _loadCounter();
   }
 
+// declaration of some variables
   int _counter = 0;
   String peu = "manger c'est important pour la santé";
   String assez = "surveiller sa ligne c'est aussi manger des produits sain";
   String beaucoup = "évite de grignoter entre les repas";
+
+  // implementation of _loadcounter
+
   void _loadCounter() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _counter = (prefs.getInt('counter') ?? 0);
     setState(() {});
   }
+
+  // _incrementcounter increment and save the value of counter
 
   void _incrementCounter() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -93,6 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: 120,
                   ),
                   GestureDetector(
+                    // here the onTap function will reset the counter
                     onTap: () async {
                       SharedPreferences prefs =
                           await SharedPreferences.getInstance();
